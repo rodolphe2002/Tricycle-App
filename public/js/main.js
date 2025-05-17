@@ -15,15 +15,15 @@ window.addEventListener("load", () => {
   setTimeout(() => loader.style.display = "none", 600);
 
   // Redirection automatique si déjà inscrit
-  const numeroClient = localStorage.getItem("numeroClient");
-  if (numeroClient && window.location.pathname.includes("inscription-client")) {
-    window.location.href = "client.html";
-  }
+  // const numeroClient = localStorage.getItem("numeroClient");
+  // if (numeroClient && window.location.pathname.includes("inscription-client")) {
+  //   window.location.href = "client.html";
+  // }
 
-  const numeroConducteur = localStorage.getItem("numeroConducteur");
-  if (numeroConducteur && window.location.pathname.includes("inscription-conducteur")) {
-    window.location.href = "conducteur.html";
-  }
+  // const numeroConducteur = localStorage.getItem("numeroConducteur");
+  // if (numeroConducteur && window.location.pathname.includes("inscription-conducteur")) {
+  //   window.location.href = "conducteur.html";
+  // }
 });
 
 // --- Sélection du rôle ---
