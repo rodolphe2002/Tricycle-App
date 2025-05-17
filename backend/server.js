@@ -1,6 +1,6 @@
 // server.js
 const express = require('express');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // <-- une seule déclaration ici
 require('dotenv').config();
 const path = require('path');
 
@@ -8,12 +8,10 @@ const path = require('path');
 const clientRoutes = require('./routes/clientRoute');
 const conducteurRoutes = require('./routes/conducteurRoute');
 const commandeRoutes = require('./routes/commandeRoute');
- 
-// sokect.io
+
+// socket.io
 const http = require("http");
 const socketIO = require("socket.io");
-
-
 
 // Initialiser l'app Express
 const app = express();
@@ -23,31 +21,20 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-
-
-
-
 // Connexion à MongoDB
-const mongoose = require('mongoose');
-
-mongoose.connect(process.env.MONGO_UR)
+mongoose.connect(process.env.MONGO_UR) // <-- MONGO_UR ou MONGO_URL ? Vérifie la variable d'environnement !
   .then(() => console.log("Connexion à MongoDB Atlas réussie"))
   .catch(err => console.error("Erreur de connexion à MongoDB:", err));
 
-
-
 // Servir les fichiers frontend depuis le dossier public
 app.use(express.static(path.join(__dirname, '../public')));
-
-
 
 app.use('/api/clients', clientRoutes);
 app.use('/api/conducteurs', conducteurRoutes);
 app.use('/api', commandeRoutes);
 app.use('/api/commandes', commandeRoutes);
 
-// configuration sockect.io
-
+// configuration socket.io
 const server = http.createServer(app);
 const io = socketIO(server, {
   cors: { origin: "*" }
@@ -63,18 +50,9 @@ io.on("connection", (socket) => {
   });
 });
 
-
-
 // Démarrer le serveur
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Serveur démarré sur le port ${PORT}`);
-// });
-
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {
   console.log(`Serveur démarré sur le port ${PORT}`);
 });
-
-
