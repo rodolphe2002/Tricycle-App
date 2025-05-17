@@ -91,13 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// --- Son des clics ---
-const clickSound = new Audio('sounds/click.mp3');
-document.querySelectorAll('button').forEach(button => {
-  button.addEventListener('click', () => {
-    clickSound.play();
-  });
-});
+
 
 // --- Animation de transition ---
 document.querySelectorAll('a, button:not([type="submit"])').forEach(el => {

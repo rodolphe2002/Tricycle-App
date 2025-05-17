@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://tricycle-app.onrender.com";
+
 document.addEventListener("DOMContentLoaded", function() {
   const clientForm = document.getElementById("inscription-client-form");
   if (clientForm) {
@@ -9,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       const clientData = { name, phone, password };
 
-      fetch('http://localhost:5000/api/clients', {
+      fetch(`${API_BASE_URL}/api/clients`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,21 +37,17 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   }
-
-
-
-
 });
 
 
 
-
-// gestion de commande des Utlisateur sur la page  client
-
+// gestion de commande des Utilisateurs sur la page client
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("commande-form");
   const confirmation = document.getElementById("confirmation");
+
+  if (!form) return;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -59,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const destination = document.getElementById("destination").value;
 
     try {
-      const response = await fetch("http://localhost:5000/api/commandes/commander", {
+      const response = await fetch(`${API_BASE_URL}/api/commandes/commander`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -95,31 +93,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // gestion des commandes sur l'interface conducteur
 
-
-// js/api.js
-
 document.addEventListener("DOMContentLoaded", () => {
-  // const conducteur = JSON.parse(localStorage.getItem("utilisateur"));
-
-  // if (!conducteur || conducteur.role !== "conducteur") {
-  //   alert("Accès interdit. Veuillez vous connecter.");
-  //   window.location.href = "inscription-conducteur.html";
-  //   return;
-  // }
-
   const arlettesDiv = document.getElementById("arlettes");
+  if (!arlettesDiv) return;
+
   arlettesDiv.innerHTML = "<p>Chargement des arlettes...</p>";
 
-  fetch("http://localhost:5000/api/commandes/en-attente")
+  fetch(`${API_BASE_URL}/api/commandes/en-attente`)
     .then(res => res.json())
     .then(commandes => {
       if (!commandes.length) {
         arlettesDiv.innerHTML = "<p>Aucune arlette pour le moment.</p>";
-        
         return;
       }
-
-     
 
       arlettesDiv.innerHTML = ""; // On vide le contenu initial
 
@@ -148,16 +134,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 function repondreCommande(id, statut) {
-  const conducteur = JSON.parse(localStorage.getItem("utilisateur"));
+  const utilisateur = JSON.parse(localStorage.getItem("utilisateur"));
+  if (!utilisateur || !utilisateur._id) {
+    alert("Utilisateur non connecté ou ID manquant");
+    return;
+  }
 
-  fetch(`http://localhost:5000/api/commandes/${id}/statut`, {
+  fetch(`${API_BASE_URL}/api/commandes/${id}/statut`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
       statut,
-      conducteurId: conducteur._id
+      conducteurId: utilisateur._id
     })
   })
   .then(res => res.json())
@@ -170,7 +160,5 @@ function repondreCommande(id, statut) {
     console.error(err);
   });
 }
-
-
 
 

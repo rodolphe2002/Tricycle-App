@@ -28,9 +28,12 @@ app.use(cors());
 
 
 // Connexion à MongoDB
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("Connexion à MongoDB Atlas réussie "))
-  .catch((err) => console.log("Erreur de connexion à MongoDB: ", err));
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_UR)
+  .then(() => console.log("Connexion à MongoDB Atlas réussie"))
+  .catch(err => console.error("Erreur de connexion à MongoDB:", err));
+
 
 
 // Servir les fichiers frontend depuis le dossier public
