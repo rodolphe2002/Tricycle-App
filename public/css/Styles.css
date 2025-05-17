@@ -21,8 +21,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   text-align: center;
-    background-image: url(../img/bg-index.jpg);
-  background-size: cover;
+
 }
 
 /* === Loader === */
@@ -461,10 +460,6 @@ body.loaded #loader-wrapper {
 }
 
 
-.index{
-  background-image: url(../img/bg-index.jpg);
-  background-size: cover;
-}
 
 
 
