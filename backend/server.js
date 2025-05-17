@@ -22,7 +22,7 @@ const cors = require("cors");
 app.use(cors());
 
 // Connexion à MongoDB
-mongoose.connect(process.env.MONGO_UR) // <-- MONGO_UR ou MONGO_URL ? Vérifie la variable d'environnement !
+mongoose.connect(process.env.MONGO_URI) // <-- MONGO_URI ou MONGO_URL ? Vérifie la variable d'environnement !
   .then(() => console.log("Connexion à MongoDB Atlas réussie"))
   .catch(err => console.error("Erreur de connexion à MongoDB:", err));
 
