@@ -36,6 +36,14 @@ function handleRoleSelection(role) {
 }
 
 // --- Géolocalisation ---
+
+document.addEventListener("DOMContentLoaded", () => {
+  const bouton = document.getElementById("detecterPosition");
+  if (bouton) {
+    bouton.addEventListener("click", detecterPosition);
+  }
+});
+
 function detecterPosition() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {

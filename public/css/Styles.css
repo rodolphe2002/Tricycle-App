@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f0f6ff;
+  background: #fff;
   margin: 0;
   padding: 0;
   color: #1a1a1a;
@@ -12,16 +12,33 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
 /* === Container général === */
-.container {
+/* .container {
   max-width: 400px;
-  background-color: #ffffff;
+ 
   padding: 30px;
   margin: auto;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
   text-align: center;
 
+} */
+
+.container {
+   background-color: #ffdaa91f;
+  position: relative;
+  width: 100%;
+
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 20px 16px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* === Loader === */
@@ -80,8 +97,8 @@ h1 {
 
 /* === Boutons rôle === */
 .role-button {
-  background-color: #3399ff;
-  color: #fff;
+  background-color: #ffa333;
+  color: #333;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -99,7 +116,7 @@ h1 {
 }
 
 .role-button:hover {
-  background-color: #1a8cff;
+  background-color: #9c5702;
   box-shadow: 0 6px 15px rgba(26, 140, 255, 0.3);
   transform: scale(1.03);
 }
@@ -122,15 +139,15 @@ form input[type="password"] {
   width: 100%;
   padding: 12px;
   margin: 10px 0;
-  border: 1px solid #b3d1ff;
+  border: 1px solid #edaa57;
   border-radius: 8px;
   font-size: 16px;
-  background: #f0f6ff;
+  /* background: #efe2d1; */
   transition: border 0.3s ease;
 }
 
 form input:focus {
-  border-color: #3399ff;
+  border-color: #ffa333;
   outline: none;
 }
 
@@ -138,8 +155,8 @@ form input:focus {
 form button[type="submit"],
 form#commande-form button[type="submit"],
 form#commande-form button[type="button"] {
-  background-color: #3399ff;
-  color: #fff;
+  background-color: #ffa333;
+  color: #333;
   border: none;
   border-radius: 12px;
   font-size: 16px;
@@ -157,36 +174,25 @@ form#commande-form button[type="button"] {
 }
 
 form button:hover {
-  background-color: #1a8cff;
+  background-color: #9c5702;
 }
 
 form#commande-form button[type="submit"]:hover {
-  background-color: #0077cc;
+  background-color: #9c5702;
 }
 
 form#commande-form button[type="button"]:hover {
-  background-color: #3399ff;
+  background-color: #9c5702;
 }
 
 /* Loader duplicata */
 .spinner {
-  border: 4px solid #cce6ff;
-  border-top: 4px solid #66b3ff;
+  border: 4px solid #efe2d1;
+  border-top: 4px solid #ffa333;
 }
 
 /* PAGE CLIENT */
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 480px;
-  margin: 0 auto;
-  min-height: 100vh;
-  padding: 20px 16px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-}
+
 
 h1 {
   text-align: center;
@@ -212,6 +218,7 @@ form#commande-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 350px;
 }
 
 /* LABEL + ICONES */
@@ -228,22 +235,95 @@ form#commande-form label {
 form#commande-form input {
   padding: 12px 15px;
   border-radius: 10px;
-  border: 1.5px solid #b3d1ff;
+  width: 170px;
+  height: 50px;
+  border: 1.5px solid #edaa57;
   font-size: 1rem;
-  background: #f0f6ff;
+  /* background: #efe2d1; */
   transition: border-color 0.3s ease;
+
 }
 
 form#commande-form input:focus {
-  border-color: #3399ff;
+  border-color: #edaa57;
   outline: none;
 }
 
 #confirmation {
   margin-top: 15px;
-  color: #3399ff;
+  color: #ffa333;
   font-weight: 600;
   text-align: center;
+}
+
+form#commande-form #detecterPosition{
+  background-color: #1a1a1a;
+   width: 150px;
+  height: 100px;
+  color: #fff;
+  
+}
+
+
+
+form#commande-form .Destination{
+   position: absolute;
+  top:220px;
+  right: 30px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  
+}
+
+form#commande-form  .departs{
+   position: absolute;
+  top:220px;
+  left: 30px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+
+form#commande-form .tel{
+   position: absolute;
+  top:350px;
+  left: 30px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+}
+
+
+form#commande-form .position{
+
+   position: absolute;
+  top:350px;
+  right: 50px;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+
+}
+
+form#commande-form .commander{
+  
+
+        position: absolute;
+  top:470px; 
+  right: 50px;
+
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+
 }
 
 

@@ -1,4 +1,5 @@
 const API_BASE_URL = "https://tricycle-app.onrender.com";
+// const API_BASE_URL = "http://localhost:5000";
 
 document.addEventListener("DOMContentLoaded", function() {
   const clientForm = document.getElementById("inscription-client-form");
@@ -133,12 +134,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
+// function repondreCommande(id, statut) {
+//   const utilisateur = JSON.parse(localStorage.getItem("utilisateur"));
+//   if (!utilisateur || !utilisateur._id) {
+//     alert("Utilisateur non connecté ou ID manquant");
+//     return;
+//   }
+
+//   fetch(`${API_BASE_URL}/api/commandes/${id}/statut`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify({
+//       statut,
+//       conducteurId: utilisateur._id
+//     })
+//   })
+//   .then(res => res.json())
+//   .then(data => {
+//     alert(`Commande ${statut}`);
+//     window.location.reload();
+//   })
+//   .catch(err => {
+//     alert("Une erreur est survenue.");
+//     console.error(err);
+//   });
+// }
+
+
 function repondreCommande(id, statut) {
-  const utilisateur = JSON.parse(localStorage.getItem("utilisateur"));
-  if (!utilisateur || !utilisateur._id) {
-    alert("Utilisateur non connecté ou ID manquant");
-    return;
-  }
+  const conducteur = JSON.parse(localStorage.getItem("utilisateur"));
 
   fetch(`${API_BASE_URL}/api/commandes/${id}/statut`, {
     method: "PUT",
@@ -147,12 +173,12 @@ function repondreCommande(id, statut) {
     },
     body: JSON.stringify({
       statut,
-      conducteurId: utilisateur._id
+      conducteurId: conducteur._id
     })
   })
   .then(res => res.json())
   .then(data => {
-    alert(`Commande ${statut}`);
+    alert(`Commande : ${statut}`);
     window.location.reload();
   })
   .catch(err => {
@@ -160,5 +186,3 @@ function repondreCommande(id, statut) {
     console.error(err);
   });
 }
-
-

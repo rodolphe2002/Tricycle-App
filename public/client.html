@@ -35,26 +35,44 @@
     <p>Pour commencer, entrez votre numéro de téléphone et votre destination.</p>
 
     <form id="commande-form">
-      <!-- Numéro de téléphone -->
-      <label for="telephone">
-        <i class="fa fa-phone"></i> Votre numéro de téléphone
-      </label>
-      <input type="tel" id="telephone" placeholder="Ex : 0123456789" required />
+   
 
       <!-- Point de départ -->
-      <label for="depart">
+      <div class="departs">
+        <label for="depart">
         <i class="fa fa-location-arrow"></i> Point de départ
       </label>
       <input type="text" id="depart" placeholder="Où vous trouvez-vous ?" required />
-      <button type="button" onclick="detecterPosition()">Détecter ma position</button>
+      </div>
 
-      <!-- Destination -->
-      <label for="destination">
+
+         <!-- Destination -->
+   <div class="Destination">
+       <label for="destination">
         <i class="fa fa-map-marker"></i> Destination
       </label>
       <input type="text" id="destination" placeholder="Où souhaitez-vous aller ?" required />
+   </div>
 
-      <button type="submit">Commander</button>
+
+      <!-- Numéro de téléphone -->
+    <div class="tel">
+        <label for="telephone">
+        <i class="fa fa-phone"></i> Votre numéro de téléphone
+      </label>
+      <input type="tel" id="telephone" placeholder="Ex : 0123456789" required />
+    </div>
+
+
+     <div class="position">
+       <button type="button" id="detecterPosition"  >Détecter ma position</button>
+     </div>
+
+   
+
+    <div class="commander">
+        <button type="submit">Commander</button>
+    </div>
     </form>
 
     <p id="confirmation" style="color: green; display: none;">
@@ -64,5 +82,7 @@
 
   <script src="./js/main.js"></script>
   <script src="./js/api.js"></script>
+
+  
 </body>
 </html>
