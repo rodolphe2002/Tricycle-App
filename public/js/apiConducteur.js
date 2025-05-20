@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://tricycle-app.onrender.com";
+
 const conducteurForm = document.getElementById("inscription-conducteur-form");
 
 if (conducteurForm) {
@@ -10,8 +12,9 @@ if (conducteurForm) {
     const tricycleNumber = document.querySelector('input[placeholder="Numéro du tricycle"]').value;
 
     const conducteurData = { name, phone, password, tricycleNumber };
+    
 
-    fetch('http://localhost:5000/api/conducteurs', {
+    fetch(`${API_BASE_URL}/api/conducteurs`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
