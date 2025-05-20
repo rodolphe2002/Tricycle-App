@@ -148,7 +148,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const refuserBtn = document.createElement("button");
   refuserBtn.textContent = "Refuser";
   refuserBtn.addEventListener("click", () => {
-    repondreCommande(cmd._id, "refusée");
+    // repondreCommande(cmd._id, "refusée");
+    alert("refuser")
   });
 
   const separator = document.createElement("hr");
