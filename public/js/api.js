@@ -110,21 +110,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
       arlettesDiv.innerHTML = ""; // On vide le contenu initial
 
-      commandes.forEach(cmd => {
-        const card = document.createElement("div");
-        card.classList.add("arlette");
+      // commandes.forEach(cmd => {
+      //   const card = document.createElement("div");
+      //   card.classList.add("arlette");
 
-        card.innerHTML = `
-          <p><strong>Client :</strong> ${cmd.numero_telephone_client}</p>
-          <p><strong>Départ :</strong> ${cmd.depart}</p>
-          <p><strong>Destination :</strong> ${cmd.destination}</p>
-          <button onclick="repondreCommande('${cmd._id}', 'acceptée')">Accepter</button>
-          <button onclick="repondreCommande('${cmd._id}', 'refusée')">Refuser</button>
-          <hr>
-        `;
+      //   card.innerHTML = `
+      //     <p><strong>Client :</strong> ${cmd.numero_telephone_client}</p>
+      //     <p><strong>Départ :</strong> ${cmd.depart}</p>
+      //     <p><strong>Destination :</strong> ${cmd.destination}</p>
+      //     <button onclick="repondreCommande('${cmd._id}', 'acceptée')">Accepter</button>
+      //     <button onclick="repondreCommande('${cmd._id}', 'refusée')">Refuser</button>
+      //     <hr>
+      //   `;
 
-        arlettesDiv.appendChild(card);
-      });
+      //   arlettesDiv.appendChild(card);
+      // });
+    
+    commandes.forEach(cmd => {
+  const card = document.createElement("div");
+  card.classList.add("arlette");
+
+  const clientInfo = document.createElement("p");
+  clientInfo.innerHTML = `<strong>Client :</strong> ${cmd.numero_telephone_client}`;
+
+  const departInfo = document.createElement("p");
+  departInfo.innerHTML = `<strong>Départ :</strong> ${cmd.depart}`;
+
+  const destinationInfo = document.createElement("p");
+  destinationInfo.innerHTML = `<strong>Destination :</strong> ${cmd.destination}`;
+
+  const accepterBtn = document.createElement("button");
+  accepterBtn.textContent = "Accepter";
+  accepterBtn.addEventListener("click", () => {
+    repondreCommande(cmd._id, "acceptée");
+  });
+
+  const refuserBtn = document.createElement("button");
+  refuserBtn.textContent = "Refuser";
+  refuserBtn.addEventListener("click", () => {
+    repondreCommande(cmd._id, "refusée");
+  });
+
+  const separator = document.createElement("hr");
+
+  card.appendChild(clientInfo);
+  card.appendChild(departInfo);
+  card.appendChild(destinationInfo);
+  card.appendChild(accepterBtn);
+  card.appendChild(refuserBtn);
+  card.appendChild(separator);
+
+  arlettesDiv.appendChild(card);
+});
+
+    
     })
     .catch(error => {
       console.error("Erreur lors du chargement des arlettes :", error);
