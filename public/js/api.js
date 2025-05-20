@@ -92,7 +92,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// gestion des commandes sur l'interface conducteur
+// // gestion des commandes sur l'interface conducteur
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const arlettesDiv = document.getElementById("arlettes");
+//   if (!arlettesDiv) return;
+
+//   arlettesDiv.innerHTML = "<p>Chargement des arlettes...</p>";
+
+//   fetch(`${API_BASE_URL}/api/commandes/en-attente`)
+//     .then(res => res.json())
+//     .then(commandes => {
+//       if (!commandes.length) {
+//         arlettesDiv.innerHTML = "<p>Aucune arlette pour le moment.</p>";
+//         return;
+//       }
+
+//       arlettesDiv.innerHTML = ""; // On vide le contenu initial
+
+//       commandes.forEach(cmd => {
+//         const card = document.createElement("div");
+//         card.classList.add("arlette");
+
+//         card.innerHTML = `
+//           <p><strong>Client :</strong> ${cmd.numero_telephone_client}</p>
+//           <p><strong>Départ :</strong> ${cmd.depart}</p>
+//           <p><strong>Destination :</strong> ${cmd.destination}</p>
+//           <button onclick="repondreCommande('${cmd._id}', 'acceptée')">Accepter</button>
+//           <button onclick="repondreCommande('${cmd._id}', 'refusée')">Refuser</button>
+//           <hr>
+//         `;
+
+//         arlettesDiv.appendChild(card);
+//       });
+//     })
+//     .catch(error => {
+//       console.error("Erreur lors du chargement des arlettes :", error);
+//       arlettesDiv.innerHTML = "<p>Erreur lors du chargement des arlettes.</p>";
+//     });
+// });
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const arlettesDiv = document.getElementById("arlettes");
@@ -114,14 +154,32 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("arlette");
 
-        card.innerHTML = `
+        const infoHTML = `
           <p><strong>Client :</strong> ${cmd.numero_telephone_client}</p>
           <p><strong>Départ :</strong> ${cmd.depart}</p>
           <p><strong>Destination :</strong> ${cmd.destination}</p>
-          <button onclick="repondreCommande('${cmd._id}', 'acceptée')">Accepter</button>
-          <button onclick="repondreCommande('${cmd._id}', 'refusée')">Refuser</button>
-          <hr>
         `;
+
+        card.innerHTML = infoHTML;
+
+        // Création des boutons
+        const btnAccepter = document.createElement("button");
+        btnAccepter.textContent = "Accepter";
+        btnAccepter.addEventListener("click", () => {
+          repondreCommande(cmd._id, "acceptée");
+        });
+
+        const btnRefuser = document.createElement("button");
+        btnRefuser.textContent = "Refuser";
+        btnRefuser.addEventListener("click", () => {
+          repondreCommande(cmd._id, "refusée");
+        });
+
+        card.appendChild(btnAccepter);
+        card.appendChild(btnRefuser);
+
+        const hr = document.createElement("hr");
+        card.appendChild(hr);
 
         arlettesDiv.appendChild(card);
       });
@@ -131,6 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
       arlettesDiv.innerHTML = "<p>Erreur lors du chargement des arlettes.</p>";
     });
 });
+
 
 
 
