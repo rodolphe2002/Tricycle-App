@@ -61,7 +61,7 @@ router.get("/en-attente", async (req, res) => {
 });
 
 // PUT /api/commandes/:id/statut
-router.put("/commandes/:id/statut", async (req, res) => {
+router.put("/:id/statut", async (req, res) => {
   const { id } = req.params;
   const { statut, conducteurId } = req.body;
 

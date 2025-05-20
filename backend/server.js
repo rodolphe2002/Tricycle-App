@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 app.use('/api/clients', clientRoutes);
 app.use('/api/conducteurs', conducteurRoutes);
-app.use('/api', commandeRoutes);
+// app.use('/api', commandeRoutes);
 app.use('/api/commandes', commandeRoutes);
 
 // configuration socket.io
